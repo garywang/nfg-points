@@ -1,0 +1,20 @@
+SUBJECT=`formail -xSubject: \
+         | tr '\;\`\\' '   ' \
+         | tr '[:upper:]' '[:lower:]' \
+         | expand | sed -e 's/[ ]*//g' -e 's/^re://gi'` 
+
+FROM=`formail -xFrom: \
+         | tr '[:upper:]' '[:lower:]' \
+         | egrep -o [a-zA-Z0-9_]+@[a-zA-Z0-9.]+`
+
+:0
+* jhurwitz@mit.edu
+| /usr/sbin/sendmail --from=jhurwitz@mit.edu jacobhurwitz@facebook.com
+
+:0
+* X-Original-To: nfg@garywang.scripts.mit.edu
+| (echo ${FROM} && echo ${SUBJECT})|/mit/garywang/mail_scripts/nfg/counter
+
+:0
+*
+| /mit/garywang/mail_scripts/logger
