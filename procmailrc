@@ -4,6 +4,7 @@ SUBJECT=`formail -xSubject: \
          | expand | sed -e 's/[ ]*//g' -e 's/^re://gi'` 
 
 FROM=`formail -xFrom: \
+         | tr '\;\`\\' '   ' \
          | tr '[:upper:]' '[:lower:]' \
          | egrep -o [a-zA-Z0-9_]+@[a-zA-Z0-9.]+`
 
