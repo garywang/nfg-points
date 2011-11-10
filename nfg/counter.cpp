@@ -11,11 +11,15 @@ using namespace std;
 
 int main(){
 	char from[500], thread[500]="/mit/garywang/mail_scripts/nfg/threads/", subject[400];
+	int multiplier=1;
 	cin.getline(from, 500);
 	cin.getline(subject, 400);
+	cin>>multiplier;
 	strcat(thread, subject);
 	//cout<<thread<<endl;
 	ofstream threadout(thread, ios::out | ios::app);
+	if(multiplier!=1)
+		threadout<<"* "<<multiplier<<" ";
 	threadout<<from<<endl;
 	threadout.close();
 	ifstream pointsin("/mit/garywang/mail_scripts/nfg/points");
@@ -34,16 +38,19 @@ int main(){
 	ifstream threadin(thread);
 	while(!threadin.eof()){
 		string s;
-		getline(threadin, s);
+		int p=1;
+		threadin>>s;
+		if(s=="*")
+			threadin>>p>>s;
 		if(threadin.eof())
 			break;
 		if(points.count(s)==0)
 			points[s]=0;
 		if(s!=string(from))
-			points[s]++;
+			points[s]+=p;
 		//cout<<s<<points[s]<<endl;
 	}
-	points[string(from)]++;
+	points[string(from)]+=multiplier;
 	threadin.close();
 	vector<pair<int, string> > vec;
 	for(map<string, int>::iterator it=points.begin(); it!=points.end(); it++){

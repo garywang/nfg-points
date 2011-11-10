@@ -8,14 +8,21 @@ FROM=`formail -xFrom: \
          | tr '[:upper:]' '[:lower:]' \
          | egrep -o [a-zA-Z0-9_]+@[a-zA-Z0-9.]+`
 
+MULTIPLIER=`formail -I "" \
+         | /mit/garywang/mail_scripts/gettext \
+         | /mit/garywang/mail_scripts/nfg/score`
+
+TEMP=`mktemp`
+
 :0
 * jhurwitz@mit.edu
 | /usr/sbin/sendmail --from=jhurwitz@mit.edu jacobhurwitz@facebook.com
 
 :0
 * X-Original-To: nfg@garywang.scripts.mit.edu
-| (echo ${FROM} && echo ${SUBJECT})|/mit/garywang/mail_scripts/nfg/counter
+| (echo ${FROM} && echo ${SUBJECT} && echo ${MULTIPLIER})|/mit/garywang/mail_scripts/nfg/counter
 
 :0 b
 *
-| /mit/garywang/mail_scripts/gettext > /mit/garywang/mail_scripts/foo
+| /mit/garywang/mail_scripts/gettext | rev \
+	| /usr/sbin/sendmail -f foo@mit.edu gwang@mit.edu > /mit/garywang/mail_scripts/foo 2>&1
