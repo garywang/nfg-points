@@ -8,8 +8,6 @@ FROM=`formail -xFrom: \
          | tr '[:upper:]' '[:lower:]' \
          | egrep -o [a-zA-Z0-9_]+@[a-zA-Z0-9.]+`
 
-TEXT=`/mit/garywang/mail_scripts/gettext`
-
 :0
 * jhurwitz@mit.edu
 | /usr/sbin/sendmail --from=jhurwitz@mit.edu jacobhurwitz@facebook.com
@@ -20,4 +18,4 @@ TEXT=`/mit/garywang/mail_scripts/gettext`
 
 :0 b
 *
-| /mit/garywang/mail_scripts/gettext | rev | tr '>' '<' > /mit/garywang/mail_scripts/foo
+| /mit/garywang/mail_scripts/gettext > /mit/garywang/mail_scripts/foo
