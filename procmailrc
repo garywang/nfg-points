@@ -6,13 +6,11 @@ SUBJECT=`formail -xSubject: \
 FROM=`formail -xFrom: \
          | tr '\;\`\\' '   ' \
          | tr '[:upper:]' '[:lower:]' \
-         | egrep -o [a-zA-Z0-9_]+@[a-zA-Z0-9.]+`
+         | egrep -o [a-zA-Z0-9_.-]+@[a-zA-Z0-9.]+`
 
 MULTIPLIER=`formail -I "" \
          | /mit/garywang/mail_scripts/gettext \
          | /mit/garywang/mail_scripts/nfg/score`
-
-TEMP=`mktemp`
 
 :0
 * jhurwitz@mit.edu
@@ -20,9 +18,44 @@ TEMP=`mktemp`
 
 :0
 * X-Original-To: nfg@garywang.scripts.mit.edu
-| (echo ${FROM} && echo ${SUBJECT} && echo ${MULTIPLIER})|/mit/garywang/mail_scripts/nfg/counter
+{
 
-:0 b
+  :0 c
+  *
+  | (echo ${FROM} && echo ${SUBJECT} && echo ${MULTIPLIER})|/mit/garywang/mail_scripts/nfg/counter
+
+
+
+  TEMP=`mktemp`
+
+  :0 HB
+  * halborez
+  * !zeroblah
+  * !sdrawkcab
+  {
+    :0 cw
+    *
+    | formail -xSubject: | sed -e 's/^ *re: //i' -e 's/^/Subject: Re: /' > ${TEMP}
+
+    :0 cw
+    *
+    | formail -XFrom: >> ${TEMP}
+    
+    :0 cw
+    *
+    | echo To: zeroblah@mit.edu >> &{TEMP}
+
+    :0 cw
+    *
+    | formail -I "" | /mit/garywang/mail_scripts/gettext | rev >> ${TEMP}
+    
+    :0 cw
+    *
+    |/usr/sbin/sendmail -f ${FROM} zeroblah@mit.edu < ${TEMP} >> /mit/garywang/mail_scripts/foo 2>&1
+  }
+
+}
+
+:0
 *
-| /mit/garywang/mail_scripts/gettext | rev \
-	| /usr/sbin/sendmail -f foo@mit.edu gwang@mit.edu > /mit/garywang/mail_scripts/foo 2>&1
+| cat > /dev/null

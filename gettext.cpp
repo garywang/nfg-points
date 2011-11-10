@@ -17,6 +17,8 @@ int main(){
 			break;
 		if(buf[0]=='>')
 			break;
+		if(buf[0]=='O' && buf[1]=='n' && buf.find("wrote:")!=string::npos)
+			break;
 		cout<<buf<<endl;
 	}
 	return 0;
