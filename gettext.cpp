@@ -5,7 +5,9 @@ using namespace std;
 
 int main(){
 	string sep;
-	getline(cin, sep);
+	do{
+		getline(cin, sep);
+	} while (sep=="");
 	string buf;
 	getline(cin, buf);
 	getline(cin, buf);
