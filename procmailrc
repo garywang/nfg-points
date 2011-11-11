@@ -13,20 +13,17 @@ MULTIPLIER=`formail -I "" \
          | /mit/garywang/mail_scripts/nfg/score`
 
 :0
-* jhurwitz@mit.edu
-| /usr/sbin/sendmail --from=jhurwitz@mit.edu jacobhurwitz@facebook.com
-
-:0
 * X-Original-To: nfg@garywang.scripts.mit.edu
 {
 
   :0 c
-  *
+  * !From: Jacob Hurwitz
   | (echo ${FROM} && echo ${SUBJECT} && echo ${MULTIPLIER})|/mit/garywang/mail_scripts/nfg/counter
 
 
 
-  TEMP=`mktemp`
+  #TEMP=`mktemp`
+  TEMP=`echo /mit/garywang/mail_scripts/temp`
 
   :0 HB
   * halborez
@@ -43,8 +40,8 @@ MULTIPLIER=`formail -I "" \
     
     :0 cw
     *
-    | echo To: zeroblah@mit.edu >> &{TEMP}
-
+    | cat | echo To: zeroblah@mit.edu >> ${TEMP}
+    
     :0 cw
     *
     | formail -I "" | /mit/garywang/mail_scripts/gettext | rev >> ${TEMP}
