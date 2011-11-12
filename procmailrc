@@ -28,7 +28,6 @@ MULTIPLIER=`formail -I "" \
   :0 HB
   * halborez
   * !zeroblah
-  * !sdrawkcab
   {
     :0 cw
     *
