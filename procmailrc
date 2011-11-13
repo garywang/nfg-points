@@ -27,7 +27,7 @@ MULTIPLIER=`formail -I "" \
 
   :0 HB
   * halborez
-  * !zeroblah
+  * !X-Reversed
   {
     :0 cw
     *
@@ -40,6 +40,14 @@ MULTIPLIER=`formail -I "" \
     :0 cw
     *
     | cat | echo To: zeroblah@mit.edu >> ${TEMP}
+
+    :0 cw
+    *
+    | cat | echo X-Reversed: true >> ${TEMP}
+    
+    :0 cw
+    *
+    | cat | echo >> ${TEMP}
     
     :0 cw
     *
