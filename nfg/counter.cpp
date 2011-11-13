@@ -10,6 +10,7 @@
 using namespace std;
 
 int main(){
+#define int long long
 	char from[500], thread[500]="/mit/garywang/mail_scripts/nfg/threads/", subject[400];
 	int multiplier=1;
 	cin.getline(from, 500);
