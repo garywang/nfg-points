@@ -1,5 +1,5 @@
 SUBJECT=`formail -xSubject: \
-         | tr '\;\`\\' '   ' \
+         | tr '\;\`\\/' ' ' \
          | tr '[:upper:]' '[:lower:]' \
          | expand | sed -e 's/[ ]*//g' -e 's/^re://gi'` 
 
