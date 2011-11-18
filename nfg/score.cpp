@@ -11,15 +11,18 @@ int main(){
 		if(c=='<')
 			while(c!='>' && !cin.eof())
 				cin>>c;
-		if(c>='a' && c<='z')
-			score--;
-		else if(c>='A' && c<='Z')
+		//if(c>='a' && c<='z')
+		//	score--;
+		//else if(c>='A' && c<='Z')
+		//	score++;
+		if(c=='+')
 			score++;
 	}
-	if(score>4)
-		score=-10000;
-	else
-		score=1;
+	//if(score>4)
+	//	score=10000;
+	//else
+	//	score=1;
+	score*=1000;
 	cout<<score<<endl;
 	return 0;
 }
