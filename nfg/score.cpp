@@ -27,7 +27,9 @@ int main(){
 			|| s.find("i'll")!=string::npos)
 			&& (s.find("make")!=string::npos
 			|| s.find("bake")!=string::npos))
-		score=1000000;
+		score=10000000;
+	if(s.find("e")==string::npos)
+		score+=100;
 	cout<<score+1<<endl;
 	return 0;
 }
