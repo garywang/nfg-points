@@ -24,8 +24,8 @@ int main(){
 			four=false;
 		s.push_back(c);
 	}
-	if(four && wordLength<=4)
-		score+=100;
+	if(four && wordLength<=4 && s.size()>20)
+		score+=25;
 	if(s.find("gary")!=string::npos
 			&& (s.find("cookie")!=string::npos
 			|| s.find("cake")!=string::npos)
@@ -34,8 +34,8 @@ int main(){
 			&& (s.find("make")!=string::npos
 			|| s.find("bake")!=string::npos))
 		score+=10000000;
-	if(s.find("e")==string::npos)
-		score+=100;
+	if(s.find("e")==string::npos && s.size()>20)
+		score+=25;
 	cout<<score+1<<endl;
 	return 0;
 }
