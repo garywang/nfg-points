@@ -10,9 +10,8 @@
 using namespace std;
 
 int main(){
-#define int long long
 	char from[500], thread[500]="/mit/garywang/mail_scripts/nfg/threads/", subject[400];
-	int multiplier=1;
+	double multiplier=1;
 	cin.getline(from, 500);
 	cin.getline(subject, 400);
 	cin>>multiplier;
@@ -24,10 +23,10 @@ int main(){
 	threadout<<from<<endl;
 	threadout.close();
 	ifstream pointsin("/mit/garywang/mail_scripts/nfg/points");
-	map<string, int> points;
+	map<string, double> points;
         while(!pointsin.eof()){
                 string s;
-		int p;
+		double p;
                 pointsin>>s;
                 if(pointsin.eof())
                         break;
@@ -39,7 +38,7 @@ int main(){
 	ifstream threadin(thread);
 	while(!threadin.eof()){
 		string s;
-		int p=1;
+		double p=1;
 		threadin>>s;
 		if(s=="*")
 			threadin>>p>>s;
@@ -53,9 +52,9 @@ int main(){
 	}
 	points[string(from)]+=multiplier;
 	threadin.close();
-	vector<pair<int, string> > vec;
-	for(map<string, int>::iterator it=points.begin(); it!=points.end(); it++){
-		vec.push_back(pair<int, string>(it->second, it->first));
+	vector<pair<double, string> > vec;
+	for(map<string, double>::iterator it=points.begin(); it!=points.end(); it++){
+		vec.push_back(pair<double, string>(it->second, it->first));
 		//pointsout<< it->first<<" "<< it->second <<endl;
 	}
 	sort(vec.begin(), vec.end());

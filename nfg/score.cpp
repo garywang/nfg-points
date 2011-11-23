@@ -21,7 +21,8 @@ int main(){
 	//else
 	//	score=1;
 	if(s.find("gary")!=string::npos
-			&& s.find("cookie")!=string::npos
+			&& (s.find("cookie")!=string::npos
+			|| s.find("cake")!=string::npos)
 			&& (s.find("i ")!=string::npos
 			|| s.find("i'll")!=string::npos)
 			&& (s.find("make")!=string::npos
