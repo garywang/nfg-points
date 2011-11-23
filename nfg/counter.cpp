@@ -31,7 +31,7 @@ int main(){
                 if(pointsin.eof())
                         break;
 		pointsin>>p;
-                //cout<<s<<" "<<p<<endl;
+                //cerr<<s<<" "<<p<<endl;
 		points[s]=p;
         }
 	pointsin.close();
@@ -61,6 +61,7 @@ int main(){
 	ofstream pointsout("/mit/garywang/mail_scripts/nfg/points");
 	for(int n=vec.size()-1; n>=0; n--){
 		//cout<<n<<endl;
+		pointsout.precision(12);
 		pointsout<<vec[n].second<<" "<<vec[n].first<<endl;
 	}
 	pointsout.close();
