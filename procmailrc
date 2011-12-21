@@ -12,6 +12,12 @@ MULTIPLIER=`formail -I "" \
          | /mit/garywang/mail_scripts/gettext \
          | /mit/garywang/mail_scripts/nfg/score`
 
+
+:0 c
+* X-Original-To: ec-discuss@garywang.scripts.mit.edu
+| (echo ${FROM} && echo ${SUBJECT} && echo ${MULTIPLIER})|/mit/garywang/mail_scripts/ec-discuss/counter
+
+
 :0
 * X-Original-To: nfg@garywang.scripts.mit.edu
 * !X-Reversed
@@ -62,4 +68,4 @@ MULTIPLIER=`formail -I "" \
 
 :0
 *
-| cat > /dev/null
+| cat >> /mit/garywang/mail_scripts/log
